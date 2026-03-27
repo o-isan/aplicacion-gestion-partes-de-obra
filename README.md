@@ -91,13 +91,19 @@ Se incluyen datos iniciales para todas las tablas principales:
 
 Esto permite que la aplicación sea usable desde el inicio sin necesidad de inserciones manuales.
 
+Para cargar los datos de prueba se puede ejecutar el siguiente comando:
+
+```bash
+docker compose exec web python manage.py seed_data
+```
+
 ---
 
 ## Consideraciones
 
 ### Tecnologías
 
-- **Django:** Framework backend principal. Permite estructurar la aplicación de forma clara y mantenible.
+- **Django:** Framework backend principal. Permite estructurar la aplicación de forma clara y mantenible. Y reutilizar muchas de las utilidades que ofrece (plantillas para la vistas, ORM, paginación, api rest ... etc).
 - **Django REST Framework (DRF):** Permite desacoplar backend y frontend mediante API REST.
 - **Django Templates:** Adecuado para este caso al tratarse de un CRUD sencillo.
 - **PostgreSQL:** Base de datos relacional robusta y preparada para concurrencia.
@@ -186,4 +192,4 @@ Eliminar un parte
 
 ## Conclusión
 
-Se ha priorizado una solución sencilla pero estructurada, aplicando buenas prácticas habituales para evitar problemas comunes en aplicaciones reales, manteniendo al mismo tiempo la simplicidad requerida por la prueba.
+Se ha priorizado una solución sencilla pero estructurada, aplicando buenas prácticas habituales para evitar problemas comunes en aplicaciones reales, manteniendo al mismo tiempo la simplicidad requerida.

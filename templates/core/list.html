@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Partes — Gestión de Partes de Obra{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Listado de Partes</h1>
+    <a href="{% url 'part_add' %}" class="btn btn-primary">+ Nuevo Parte</a>
+</div>
+
+{% if parts %}
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nº Parte</th>
+                <th>Proyecto</th>
+                <th>Fecha</th>
+                <th>Canal</th>
+                <th>Responsable</th>
+                <th>Terreno</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for part in parts %}
+            <tr>
+                <td><span class="part-number">{{ part.part_number }}</span></td>
+                <td>{{ part.project.name }}</td>
+                <td>{{ part.part_date|date:"d/m/Y" }}</td>
+                <td>{{ part.canal.name|default:"—" }}</td>
+                <td>{{ part.responsible_employee.name|default:"—" }}</td>
+                <td>{{ part.ground.name|default:"—" }}</td>
+                <td>
+                    <span class="badge badge-{{ part.status }}">
+                        {% if part.status == 'pending' %}Pendiente
+                        {% elif part.status == 'approved' %}Aprobado
+                        {% elif part.status == 'rejected' %}Rechazado
+                        {% endif %}
+                    </span>
+                </td>
+                <td class="actions">
+                    <a href="{% url 'part_edit' part.pk %}" class="btn btn-sm btn-secondary" title="Editar">✏️
+                        Editar</a>
+                    <a href="{% url 'part_delete' part.pk %}" class="btn btn-sm btn-danger" title="Eliminar">🗑️
+                        Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="empty-state">
+    <div class="empty-state-icon">📋</div>
+    <h2>No hay partes registrados</h2>
+    <p>Comienza creando un nuevo parte de obra.</p>
+    <a href="{% url 'part_add' %}" class="btn btn-primary">+ Crear Primer Parte</a>
+</div>
+{% endif %}
+{% endblock %}

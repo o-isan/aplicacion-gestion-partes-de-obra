@@ -27,8 +27,10 @@
         </div>
         {% endif %}
 
+        <h2 class="form-section-title">Datos del Parte</h2>
         <div class="form-grid">
             {% for field in form %}
+            {% if field.name != 'justification_reason' and field.name != 'justification_text' and field.name != 'machineries' %}
             {% if not field.is_hidden %}
             <div class="form-group {% if field.errors %}has-error{% endif %}">
                 <label for="{{ field.id_for_label }}" class="form-label">
@@ -46,7 +48,47 @@
             {% else %}
             {{ field }}
             {% endif %}
+            {% endif %}
             {% endfor %}
+        </div>
+
+        <h2 class="form-section-title">Maquinaria</h2>
+        <div class="form-grid">
+            <div class="form-group form-group-wide {% if form.machineries.errors %}has-error{% endif %}">
+                <label for="{{ form.machineries.id_for_label }}" class="form-label">
+                    {{ form.machineries.label }}
+                </label>
+                {{ form.machineries }}
+                <small class="form-help">Mantenga pulsado Ctrl (Cmd en Mac) para seleccionar varias máquinas.</small>
+                {% for error in form.machineries.errors %}
+                <span class="form-error">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="justification-section" class="justification-section"
+            style="{% if not form.excess_hours_justified.value %}display:none;{% endif %}">
+            <h2 class="form-section-title">Justificación de Horas Extra</h2>
+            <div class="form-grid">
+                <div class="form-group {% if form.justification_reason.errors %}has-error{% endif %}">
+                    <label for="{{ form.justification_reason.id_for_label }}" class="form-label">
+                        {{ form.justification_reason.label }}
+                    </label>
+                    {{ form.justification_reason }}
+                    {% for error in form.justification_reason.errors %}
+                    <span class="form-error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="form-group form-group-wide {% if form.justification_text.errors %}has-error{% endif %}">
+                    <label for="{{ form.justification_text.id_for_label }}" class="form-label">
+                        {{ form.justification_text.label }}
+                    </label>
+                    {{ form.justification_text }}
+                    {% for error in form.justification_text.errors %}
+                    <span class="form-error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 
         <div class="form-actions">
@@ -55,4 +97,18 @@
         </div>
     </form>
 </div>
+
+<script>
+    (function () {
+        var checkbox = document.getElementById('id_excess_hours_justified');
+        var section = document.getElementById('justification-section');
+        if (checkbox && section) {
+            function toggle() {
+                section.style.display = checkbox.checked ? '' : 'none';
+            }
+            checkbox.addEventListener('change', toggle);
+            toggle();
+        }
+    })();
+</script>
 {% endblock %}

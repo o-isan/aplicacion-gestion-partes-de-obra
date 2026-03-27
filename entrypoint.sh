@@ -12,6 +12,9 @@ echo "PostgreSQL is up!"
 echo "Running migrations..."
 python manage.py migrate --noinput
 
+echo "Loading seed data..."
+python manage.py seed_data
+
 echo "Collecting static files..."
 python manage.py collectstatic --noinput 2>/dev/null || true
 

@@ -8,7 +8,9 @@
    =================================================================== */
 
 /* ─── Reset & Base ──────────────────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -394,6 +396,61 @@ select.form-control {
     margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--color-secondary-light);
+}
+
+/* ─── Form Sections ─────────────────────────────────────────────── */
+.form-section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.form-section-title:first-child {
+    margin-top: 0;
+}
+
+.form-group-wide {
+    grid-column: 1 / -1;
+}
+
+/* ─── Multi-select ──────────────────────────────────────────────── */
+select[multiple].form-control,
+.form-select-multiple {
+    appearance: auto;
+    background-image: none;
+    padding: 0.4rem;
+    min-height: 120px;
+}
+
+select[multiple].form-control option,
+.form-select-multiple option {
+    padding: 0.35rem 0.6rem;
+    border-radius: 3px;
+    margin-bottom: 2px;
+}
+
+select[multiple].form-control option:checked,
+.form-select-multiple option:checked {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* ─── Justification Section ─────────────────────────────────────── */
+.justification-section {
+    background: var(--color-primary-light);
+    border: 1px solid rgba(45, 180, 173, 0.2);
+    border-radius: var(--radius-md);
+    padding: 0 1.5rem 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.justification-section .form-section-title {
+    color: var(--color-primary-dark);
+    border-bottom-color: rgba(45, 180, 173, 0.3);
 }
 
 /* ─── Alerts ────────────────────────────────────────────────────── */

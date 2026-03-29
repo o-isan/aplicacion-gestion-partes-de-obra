@@ -22,7 +22,7 @@ class PartViewSet(viewsets.ModelViewSet):
         ).prefetch_related(
             'partmachinery_set',
             'excesshoursjustification_set'
-        )
+        ).order_by('-registration_date_utc')
 
     def destroy(self, request, *args, **kwargs):
         part = self.get_object()

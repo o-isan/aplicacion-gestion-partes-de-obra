@@ -96,6 +96,19 @@ Para cargar los datos de prueba se puede ejecutar el siguiente comando:
 ```bash
 docker compose exec web python manage.py seed_data
 ```
+---
+
+## Tests
+
+Para ejecutar los tests se puede ejecutar el siguiente comando:
+
+```bash
+docker compose exec web python manage.py test core
+```
+
+Aseguran que los endpoints CRUD para la gestión de partes de obra funcionan correctamente.
+
+En esta caso se ha optado por usar SQLite para los tests, ya que es una base de datos en memoria y no requiere configuración adicional.
 
 ---
 
@@ -192,4 +205,8 @@ Eliminar un parte
 
 ## Conclusión
 
-Se ha priorizado una solución sencilla pero estructurada, aplicando buenas prácticas habituales para evitar problemas comunes en aplicaciones reales, manteniendo al mismo tiempo la simplicidad requerida.
+Debido a la falta de contexto y especificaciones detalladas, se han tomado ciertas decisiones de diseño con el objetivo de construir una solución coherente y funcional.
+
+Se ha priorizado una implementación sencilla, evitando sobreingeniería, pero aplicando buenas prácticas habituales como la modularidad, el uso del ORM, la paginación y una separación clara entre backend y presentación.
+
+El resultado es una aplicación estructurada, mantenible y preparada para evolucionar en caso de ampliación de requisitos.

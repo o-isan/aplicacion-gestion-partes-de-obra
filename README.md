@@ -48,7 +48,7 @@ Diagrama de paso a tablas de la BB.DD
 
 ## Despliegue
 
-### 1. Configuración de entorno
+### Configuración de entorno
 
 Crear archivo `.env` con las siguientes variables o las credenciales que se deseen:
 
@@ -61,7 +61,7 @@ POSTGRES_PORT=5432
 DJANGO_SECRET_KEY=tu_clave_secreta
 ```
 
-### 2. Construcción y ejecución
+### Construcción y ejecución
 
 ```bash
 docker compose build --no-cache
@@ -75,6 +75,18 @@ El contenedor ejecuta automáticamente:
 - Arranque del servidor Django
 
 > ⚠️ **Advertencia:** No ejecutar `docker compose down -v`. Esto eliminará el volumen de la base de datos.
+
+---
+
+
+## Uso de la aplicación
+
+La vista principal es el listado de partes, que se encuentra en la URL `/parts/`. Desde ahí se puede acceder a las siguientes funcionalidades.
+
+- `/parts/`: Listado de partes de obra
+- `/parts/add/`: Formulario para añadir un parte de obra
+- `/parts/edit/<id>/`: Formulario para editar un parte de obra
+- `/parts/delete/<id>/`: Formulario para eliminar un parte de obra
 
 ---
 
@@ -164,23 +176,7 @@ Esto evita problemas típicos de consultas N+1.
 
 - El código fuente está en inglés, siguiendo estándares habituales en desarrollo de software.
 - Los formularios están en español.
-- Se ha utilizado **Git Flow** como estrategia de control de versiones.
-
----
-
-## Estructura del proyecto
-
-```
-/construction_parts
-├── docker-compose.yml
-├── .env
-├── requirements.txt
-├── mysql-init/
-├── core/
-├── templates/
-├── static/
-└── project/
-```
+- Se ha utilizado **Git Flow** como estrategia para estandarizar el control de versiones.
 
 ---
 
@@ -202,6 +198,15 @@ Modificar un parte
 Eliminar un parte
 ![Eliminar parte](doc/vista_eliminar_parte.png)
 
+
+## Posibles mejoras
+
+- Implementación de autenticación y control de permisos.
+- Mejora de la interfaz de usuario en formularios y navegación.
+- Despliegue en un entorno cloud (Azure, AWS, etc.) con configuración de dominio y HTTPS.
+- Uso de un servidor WSGI (por ejemplo, Gunicorn) junto a un proxy inverso (Nginx) para entornos de producción.
+
+---
 
 ## Conclusión
 
